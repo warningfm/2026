@@ -75,7 +75,7 @@ function Page() {
         var $artistName = document.querySelectorAll('#historicSong article .music-info .artist');
 
         // Default cover art
-        var urlCoverArt = DEFAULT_COVER_ART;
+        var urlCoverArt = 'img/bg-capa.jpg';
 
         // Get cover art for song history
         var xhttp = new XMLHttpRequest();
@@ -111,9 +111,9 @@ function Page() {
         }, 2000);
     }
 
-    this.refreshCover = function (song = '', artist) {
+this.refreshCover = function (song = '', artist) {
         // Default cover art
-        var urlCoverArt = DEFAULT_COVER_ART;
+        var urlCoverArt = 'img/bg-capa.jpg';
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -125,14 +125,13 @@ function Page() {
                 var data = JSON.parse(this.responseText);
                 var artworkUrl100 = (data.resultCount) ? data.results[0].artworkUrl100 : urlCoverArt;
 
-                // Se retornar algum dado, alterar a resolução da imagem ou definir a padrão
-                urlCoverArt = (artworkUrl100 != urlCoverArt) ? artworkUrl100.replace('100x100bb', '512x512bb') : urlCoverArt;
-                var urlCoverArt96 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('512x512bb', '96x96bb') : urlCoverArt;
-                var urlCoverArt128 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('512x512bb', '128x128bb') : urlCoverArt;
-                var urlCoverArt192 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('512x512bb', '192x192bb') : urlCoverArt;
-                var urlCoverArt256 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('512x512bb', '256x256bb') : urlCoverArt;
-                var urlCoverArt384 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('512x512bb', '384x384bb') : urlCoverArt;
-
+                  // Se retornar algum dado, alterar a resoluÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o da imagem ou definir a padrÃƒÆ’Ã‚Â£o
+                urlCoverArt = (artworkUrl100 != urlCoverArt) ? artworkUrl100.replace('100x100bb', '100000x100000-999') : urlCoverArt;
+                var urlCoverArt96 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '96x96bb') : urlCoverArt;
+                var urlCoverArt128 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '128x128bb') : urlCoverArt;
+                var urlCoverArt192 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '192x192bb') : urlCoverArt;
+                var urlCoverArt256 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '256x256bb') : urlCoverArt;
+                var urlCoverArt384 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '384x384bb') : urlCoverArt;
                 coverArt.style.backgroundImage = 'url(' + urlCoverArt + ')';
                 coverArt.className = 'animated bounceInLeft';
 
@@ -356,8 +355,6 @@ function getStreamingData() {
 
             var page = new Page();
 
-            var currentSongElement = document.getElementById('currentSong');
-
             // Formating characters to UTF-8
             let song = data.currentSong.replace(/&apos;/g, '\'');
             currentSong = song.replace(/&amp;/g, '&');
@@ -368,7 +365,7 @@ function getStreamingData() {
             // Change the title
             document.title = currentSong + ' - ' + currentArtist + ' | ' + RADIO_NAME;
 
-            if (currentSongElement.innerText !== song.trim()) {
+            if (document.getElementById('currentSong').innerHTML !== song) {
                 page.refreshCover(currentSong, currentArtist);
                 page.refreshCurrentSong(currentSong, currentArtist);
                 page.refreshLyric(currentSong, currentArtist);
