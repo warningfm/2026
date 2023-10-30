@@ -1,4 +1,4 @@
-const RADIO_NAME = 'mbah nunung Online Radio 1';
+const RADIO_NAME = 'mbah nunung Online Radio';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
 var API_SERVICE = 'ITUNES';
