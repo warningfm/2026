@@ -1,25 +1,16 @@
-/*
-The MIT License (MIT)
+const RADIO_NAME = 'mbah nunung Online Radio 1';
 
-Github: https://github.com/gsavio
+// SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
+var API_SERVICE = 'ITUNES';
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
+// Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
+const URL_STREAMING = 'https://stream.zeno.fm/n4gzbe9ufzzuv';
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+//API URL / if you use MEDIA CP, CHANGE THIS TO : https://api.streamafrica.net/metadata/mediacp.php?url='+MEDIACP_JSON_URL
+const API_URL = 'https://api.streamafrica.net/metadata/index.php?z='+URL_STREAMING
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+// Visit https://api.vagalume.com.br/docs/ to get your API key
+const API_KEY = "18fe07917957c289983464588aabddfb";
 
 window.onload = function () {
     var page = new Page;
@@ -33,7 +24,7 @@ window.onload = function () {
     // Interval to get streaming data in miliseconds
     setInterval(function () {
         getStreamingData();
-    }, 4000);
+    }, 10000);
 
     var coverArt = document.getElementsByClassName('cover-album')[0];
 
@@ -75,16 +66,17 @@ function Page() {
         var $artistName = document.querySelectorAll('#historicSong article .music-info .artist');
 
         // Default cover art
-        var urlCoverArt = 'img/bg-capa.jpg';
+        var urlCoverArt = 'img/cover.png';
 
         // Get cover art for song history
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 var data = JSON.parse(this.responseText);
-                var artworkUrl100 = (data.resultCount) ? data.results[0].artworkUrl100 : urlCoverArt;
+                var artworking = data.results;
+                var gotit = artworking.artwork;
 
-                document.querySelectorAll('#historicSong article .cover-historic')[n].style.backgroundImage = 'url(' + artworkUrl100 + ')';
+                document.querySelectorAll('#historicSong article .cover-historic')[n].style.backgroundImage = 'url(' + gotit + ')';
             }
             // Formating characters to UTF-8
             var music = info.song.replace(/&apos;/g, '\'');
@@ -100,7 +92,7 @@ function Page() {
             $historicDiv[n].classList.add('animated');
             $historicDiv[n].classList.add('slideInRight');
         }
-        xhttp.open('GET', 'https://itunes.apple.com/search?term=' + info.artist + ' ' + info.song + '&media=music&limit=1', true);
+        xhttp.open('GET', 'https://api.streamafrica.net/new.search.php?query=' + info.artist + ' ' + info.song + '&service=' + API_SERVICE.toLowerCase());
         xhttp.send();
 
         setTimeout(function () {
@@ -111,9 +103,9 @@ function Page() {
         }, 2000);
     }
 
-this.refreshCover = function (song = '', artist) {
+    this.refreshCover = function (song = '', artist) {
         // Default cover art
-        var urlCoverArt = 'img/bg-capa.jpg';
+        var urlCoverArt = 'img/cover.png';
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -123,15 +115,9 @@ this.refreshCover = function (song = '', artist) {
             // Get cover art URL on iTunes API
             if (this.readyState === 4 && this.status === 200) {
                 var data = JSON.parse(this.responseText);
-                var artworkUrl100 = (data.resultCount) ? data.results[0].artworkUrl100 : urlCoverArt;
+                var artworkUrl100 = data.results;
+                var urlCoverArt = artworkUrl100.artwork;
 
-                  // Se retornar algum dado, alterar a resoluÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o da imagem ou definir a padrÃƒÆ’Ã‚Â£o
-                urlCoverArt = (artworkUrl100 != urlCoverArt) ? artworkUrl100.replace('100x100bb', '100000x100000-999') : urlCoverArt;
-                var urlCoverArt96 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '96x96bb') : urlCoverArt;
-                var urlCoverArt128 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '128x128bb') : urlCoverArt;
-                var urlCoverArt192 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '192x192bb') : urlCoverArt;
-                var urlCoverArt256 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '256x256bb') : urlCoverArt;
-                var urlCoverArt384 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('100000x100000-999', '384x384bb') : urlCoverArt;
                 coverArt.style.backgroundImage = 'url(' + urlCoverArt + ')';
                 coverArt.className = 'animated bounceInLeft';
 
@@ -146,27 +132,27 @@ this.refreshCover = function (song = '', artist) {
                         title: song,
                         artist: artist,
                         artwork: [{
-                                src: urlCoverArt96,
+                                src: urlCoverArt,
                                 sizes: '96x96',
                                 type: 'image/png'
                             },
                             {
-                                src: urlCoverArt128,
+                                src: urlCoverArt,
                                 sizes: '128x128',
                                 type: 'image/png'
                             },
                             {
-                                src: urlCoverArt192,
+                                src: urlCoverArt,
                                 sizes: '192x192',
                                 type: 'image/png'
                             },
                             {
-                                src: urlCoverArt256,
+                                src: urlCoverArt,
                                 sizes: '256x256',
                                 type: 'image/png'
                             },
                             {
-                                src: urlCoverArt384,
+                                src: urlCoverArt,
                                 sizes: '384x384',
                                 type: 'image/png'
                             },
@@ -180,7 +166,7 @@ this.refreshCover = function (song = '', artist) {
                 }
             }
         }
-        xhttp.open('GET', 'https://itunes.apple.com/search?term=' + artist + ' ' + song + '&media=music&limit=1', true);
+        xhttp.open('GET', 'https://api.streamafrica.net/new.search.php?query=' + artist + ' ' + song + '&service=' + API_SERVICE.toLowerCase());
         xhttp.send();
     }
 
@@ -262,18 +248,20 @@ function Player() {
 // On play, change the button to pause
 audio.onplay = function () {
     var botao = document.getElementById('playerButton');
-
+    var bplay = document.getElementById('buttonPlay');
     if (botao.className === 'fa fa-play') {
         botao.className = 'fa fa-pause';
+        bplay.firstChild.data = 'PAUSE';
     }
 }
 
 // On pause, change the button to play
 audio.onpause = function () {
     var botao = document.getElementById('playerButton');
-
+    var bplay = document.getElementById('buttonPlay');
     if (botao.className === 'fa fa-pause') {
         botao.className = 'fa fa-play';
+        bplay.firstChild.data = 'PLAY';
     }
 }
 
@@ -285,7 +273,7 @@ audio.onvolumechange = function () {
 }
 
 audio.onerror = function () {
-    var confirmacao = confirm('Error on communicate to server. \nClick OK to try again.');
+    var confirmacao = confirm('Stream Down / Network Error. \nClick OK to try again.');
 
     if (confirmacao) {
         window.location.reload();
@@ -380,7 +368,7 @@ function getStreamingData() {
     var d = new Date();
 
     // Requisition with timestamp to prevent cache on mobile devices
-    xhttp.open('GET', 'api.php?url=' + URL_STREAMING + '&streamtype=' + STREAMING_TYPE + '&historic=' + HISTORIC + '&next=' + NEXT_SONG + '&t=' + d.getTime(), true);
+    xhttp.open('GET', API_URL);
     xhttp.send();
 }
 
@@ -548,3 +536,4 @@ function intToDecimal(vol) {
 function decimalToInt(vol) {
     return vol * 100;
 }
+
