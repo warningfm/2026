@@ -1,10 +1,10 @@
 const RADIO_NAME = 'mbah nunung Online Radio';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
-var API_SERVICE = 'ITUNES';
+var API_SERVICE = 'spotify';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
-const URL_STREAMING = 'https://stream.zeno.fm/n4gzbe9ufzzuv';
+const URL_STREAMING = 'http://scure.streaming.id:8000/mbahnunungonline';
 
 //API URL / if you use MEDIA CP, CHANGE THIS TO : https://api.streamafrica.net/metadata/mediacp.php?url='+MEDIACP_JSON_URL
 const API_URL = 'https://api.streamafrica.net/metadata/index.php?z='+URL_STREAMING
