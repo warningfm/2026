@@ -72,12 +72,12 @@ body {
 
 .watermark {
     width: 89px;
-    height: 35px;
-    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhr4RlAyPalNpGm0otlDsu03SxZbGsbxx-hNPs9d5aGhBf1G0ShzLzRJwVg-WZ4AZ6RFC-HR6h1t7dWJZNSWtePvO9qIYITdqRbgnm-8rt5Y_2UlDhbrrGaw9EQ9ScqVSSJtFPeoewz29fq1YSTwC6qkhxQFwQu0ZbimHkBqqe3eHaLIUQqM6A-xSjk2ke9/s1600/bDB69T0.png) no-repeat;
-    background-size: auto 35px;
+    height: 55px;
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYW3wSfNsEAaFZ9wJZM_FJi0Ixp96vfG_pH33OdkS63Siw0nBtg3MjYlm13yJCFoWF0yTIQpp8eUEoP1z-klWS0xg8dsPBui7HAbTMnRZeOv8LK8t0vTahWecenLQ7Xh_rUZe6Os0l7NuAdUyDDXH9H5tpf40gG8cKQSMT5NO8kRDBSF-HzVNLLPsgAmDD/s1600/nPBu2lK.png) no-repeat;
+    background-size: auto 55px;
     opacity: 0.5;
     position: relative;
-    bottom: 36px;
+    bottom: 56px;
     right: -1px;
     z-index: 5;
 }
