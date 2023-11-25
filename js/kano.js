@@ -1,7 +1,6 @@
 /*
 The MIT License (MIT)
 
-
 */
 
 window.onload = function () {
