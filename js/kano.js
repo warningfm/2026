@@ -1,33 +1,8 @@
 /*
 The MIT License (MIT)
 
-Github: https://github.com/gsavio
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-
-const RADIO_NAME = settings.radio_name;
-const URL_STREAMING = settings.url_streaming;
-const STREAMING_TYPE = settings.streaming_type;
-const API_KEY = settings.api_key;
-const HISTORIC = settings.historic;
-const NEXT_SONG = settings.next_song;
-const DEFAULT_COVER_ART = settings.default_cover_art;
 
 window.onload = function () {
     var page = new Page;
@@ -41,7 +16,7 @@ window.onload = function () {
     // Interval to get streaming data in miliseconds
     setInterval(function () {
         getStreamingData();
-    }, 5000);
+    }, 6000);
 
     var coverArt = document.getElementsByClassName('cover-album')[0];
 
@@ -133,13 +108,13 @@ function Page() {
                 var data = JSON.parse(this.responseText);
                 var artworkUrl100 = (data.resultCount) ? data.results[0].artworkUrl100 : urlCoverArt;
 
-                // Se retornar algum dado, alterar a resoluÃ§Ã£o da imagem ou definir a padrÃ£o
-                urlCoverArt = (artworkUrl100 != urlCoverArt) ? artworkUrl100.replace('100x100bb', '640x640bb') : urlCoverArt;
-                var urlCoverArt96 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('640x640bb', '96x96bb') : urlCoverArt;
-                var urlCoverArt128 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('640x640bb', '128x128bb') : urlCoverArt;
-                var urlCoverArt192 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('640x640bb', '192x192bb') : urlCoverArt;
-                var urlCoverArt256 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('640x640bb', '256x256bb') : urlCoverArt;
-                var urlCoverArt384 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('640x640bb', '384x384bb') : urlCoverArt;
+                // Se retornar algum dado, alterar a resoluÃƒÂ§ÃƒÂ£o da imagem ou definir a padrÃƒÂ£o
+                urlCoverArt = (artworkUrl100 != urlCoverArt) ? artworkUrl100.replace('100x100bb', '1200x1200bb') : urlCoverArt;
+                var urlCoverArt96 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('1200x1200bb', '96x96bb') : urlCoverArt;
+                var urlCoverArt128 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('1200x1200bb', '128x128bb') : urlCoverArt;
+                var urlCoverArt192 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('1200x1200bb', '192x192bb') : urlCoverArt;
+                var urlCoverArt256 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('1200x1200bb', '256x256bb') : urlCoverArt;
+                var urlCoverArt384 = (artworkUrl100 != urlCoverArt) ? urlCoverArt.replace('1200x1200bb', '384x384bb') : urlCoverArt;
 
                 coverArt.style.backgroundImage = 'url(' + urlCoverArt + ')';
                 coverArt.className = 'animated bounceInLeft';
@@ -181,7 +156,7 @@ function Page() {
                             },
                             {
                                 src: urlCoverArt,
-                                sizes: '640x640',
+                                sizes: '512x512',
                                 type: 'image/png'
                             }
                         ]
@@ -242,12 +217,13 @@ function Page() {
     }
 }
 
-var audio = new Audio(URL_STREAMING + '/rbtfm');
+//var audio = new Audio(URL_STREAMING + '/;');
+var audio = new Audio(URL_STREAMING);
 
 // Player control
 function Player() {
-    this.play = async function () {
-        await audio.play();
+    this.play = function () {
+        audio.play();
 
         var defaultVolume = document.getElementById('volume').value;
 
@@ -364,21 +340,19 @@ function getStreamingData() {
 
             var page = new Page();
 
-            var currentSongElement = document.getElementById('currentSong').innerHTML.replace(/&apos;/g, '\'');
-            let currentSongEl = currentSongElement.replace(/&amp;/g, '&');
+            var currentSongElement = document.getElementById('currentSong');
 
             // Formating characters to UTF-8
             let song = data.currentSong.replace(/&apos;/g, '\'');
-            let currentSong = song.replace(/&amp;/g, '&');
+            currentSong = song.replace(/&amp;/g, '&');
 
             let artist = data.currentArtist.replace(/&apos;/g, '\'');
-            let currentArtist = artist.replace(/&amp;/g, '&');
-            currentArtist = currentArtist.replace('  ', ' '); 
-            
+            currentArtist = artist.replace(/&amp;/g, '&');
+
             // Change the title
             document.title = currentSong + ' - ' + currentArtist + ' | ' + RADIO_NAME;
 
-            if (currentSongEl.trim() !== currentSong.trim()) {
+            if (currentSongElement.innerText !== song.trim()) {
                 page.refreshCover(currentSong, currentArtist);
                 page.refreshCurrentSong(currentSong, currentArtist);
                 page.refreshLyric(currentSong, currentArtist);
@@ -393,7 +367,7 @@ function getStreamingData() {
     var d = new Date();
 
     // Requisition with timestamp to prevent cache on mobile devices
-    xhttp.open('GET', 'api.php?url=' + URL_STREAMING + '&streamtype=' + STREAMING_TYPE + '&historic=' + HISTORIC + '&next=' + NEXT_SONG + '&t=' + d.getTime(), true);
+    xhttp.open('GET', 'https://api.streamafrica.net/metadata/index.php?z=' + URL_STREAMING + '&streamtype=' + STREAMING_TYPE + '&historic=' + HISTORIC + '&next=' + NEXT_SONG + '&t=' + d.getTime(), true);
     xhttp.send();
 }
 
