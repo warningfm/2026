@@ -1,4 +1,4 @@
-const RADIO_NAME = 'Rendra Radio';
+const RADIO_NAME = 'Rendra';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
 var API_SERVICE = 'spotify';
