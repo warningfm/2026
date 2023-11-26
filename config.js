@@ -30,7 +30,7 @@ var settings = {
     'next_song': false,
 
     // Path to default cover art when none are found
-    'default_cover_art': 'img/bg-cover.jpg',
+    'default_cover_art': 'img/bg-cover.png',
 };
 
 const RADIO_NAME = settings.radio_name;
