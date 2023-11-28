@@ -287,7 +287,7 @@ input[type=range]::-ms-thumb {
     margin-right: 15px;
     float: left;
     border-radius: 10px;
-    background: url('../img/cover.png') no-repeat;
+    background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWeI_jc8OFPc3AAMh32jSMjX0WCCjfSN_LVG3_-e6LyMLy5b0HvHX2LoWWeX2X_9O2w-Ay5eflh0mBhSJITekyEBRgtJQDoLf5RpBAOC4P37NNVAdYTgYNSK5A8dAZgyVpsRAeyJai9xCNsuuXZz4-EFMWY3HaJs91H1XAX85XpVGODGTJ_8XYIM1c4ChL/s1600/nocoverart.jpg') no-repeat;
     background-size: cover;
     border: 2px solid #fefefe;
    
