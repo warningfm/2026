@@ -30,7 +30,7 @@ var settings = {
     'next_song': false,
 
     // Path to default cover art when none are found
-    'default_cover_art': 'https://i.imgur.com/aQyl7gQ.jpg',
+    'default_cover_art': 'https://i.imgur.com/R1mUW4J.jpg',
 };
 
 const RADIO_NAME = settings.radio_name;
