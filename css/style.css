@@ -70,10 +70,10 @@ body {
     width: 89px;
     height: 55px;
     background: url(https://i.imgur.com/WQ7qP5A.png) no-repeat;
-    background-size: auto 55px;
+    background-size: auto 45px;
     opacity: 0.5;
     position: relative;
-    bottom: 56px;
+    bottom: 46px;
     right: -1px;
     z-index: 5;
 }
