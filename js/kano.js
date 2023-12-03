@@ -15,6 +15,8 @@ copies or substantial portions of the Software.
 
 */
 
+var zenoid = 'uv0krbzgszpvv'
+
 window.onload = function () {
     var page = new Page;
     page.changeTitlePage();
@@ -378,7 +380,7 @@ function getStreamingData() {
     var d = new Date();
 
     // Requisition with timestamp to prevent cache on mobile devices
-    xhttp.open('GET', 'https://api.streamafrica.net/metadata/index.php?z=' + URL_STREAMING + '&streamtype=' + STREAMING_TYPE + '&historic=' + HISTORIC + '&next=' + NEXT_SONG + '&t=' + d.getTime(), true);
+    xhttp.open('GET', 'https://api.streamafrica.net/zeno/index.php?z='+zenoid);
     xhttp.send();
 }
 
