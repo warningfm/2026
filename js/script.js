@@ -1,4 +1,4 @@
-const RADIO_NAME = 'Rendra';
+const RADIO_NAME = 'TOMBOWARAS FM';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
 var API_SERVICE = 'spotify';
