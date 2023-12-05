@@ -1,7 +1,12 @@
+
+
 const RADIO_NAME = 'TOMBOWARAS FM';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
 var API_SERVICE = 'spotify';
+
+//PASTE YOUR MEDIA CP JSON URL HERE TO GET NOW PLAYING SONG TITLE.
+const MEDIACP_JSON_URL = ''
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
 const URL_STREAMING = 'https://stream.zeno.fm/uv0krbzgszpvv';
