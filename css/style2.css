@@ -103,14 +103,14 @@ body {
 }
 
 .info-current-song h2 {
-    font-size: 22px;
+    font-size: 32px;
     text-transform: uppercase;
     font-weight: 800;
    
 }
 
 .info-current-song h3 {
-    font-size: 18px;
+    font-size: 22px;
    
     font-weight: 600;
 }
