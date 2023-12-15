@@ -20,50 +20,53 @@
 
 <body>
 
-    <div id="player">
-    <div id="bgCover"></div>
-    <div class="container">
-    <div class="row web-player">
-        <div class="col-12">
+   <div class="wp-block-cover" style="margin-top:0;margin-bottom:0"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-70 has-background-dim wp-block-cover__gradient-background has-background-gradient" style="background:linear-gradient(135deg,rgb(0,0,0) 0%,rgb(249,163,26) 100%)"></span><img width="1920" height="1080" class="wp-block-cover__image-background wp-image-450" alt src="https://www.radiobani.com/v1/wp-content/uploads/2023/07/mango-boston-merge-1.jpg" style="object-position:49% 72%" data-object-fit="cover" data-object-position="49% 72%" srcset="https://www.radiobani.com/v1/wp-content/uploads/2023/07/mango-boston-merge-1.jpg 1920w, https://www.radiobani.com/v1/wp-content/uploads/2023/07/mango-boston-merge-1-300x169.jpg 300w, https://www.radiobani.com/v1/wp-content/uploads/2023/07/mango-boston-merge-1-1024x576.jpg 1024w, https://www.radiobani.com/v1/wp-content/uploads/2023/07/mango-boston-merge-1-768x432.jpg 768w, https://www.radiobani.com/v1/wp-content/uploads/2023/07/mango-boston-merge-1-1536x864.jpg 1536w" sizes="(max-width: 1920px) 100vw, 1920px" /><div class="wp-block-cover__inner-container is-layout-flow wp-block-cover-is-layout-flow">
+<div class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-layout-3 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%"><div id="player">
+<div id="bgCover"></div>
+<div class="container">
+<div class="row web-player">
+<div class="col-12">
 <div class="row">
 <div class="col-12 col-md-6">
 <div class="cover-album">
 <div id="currentCoverArt"></div>
-<div class="watermark"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfWzLDv_HJEsmmnSEFBeFfT90qew2K7aT0tI7d0A04ta5vbLYlorg_yjHSneI8VHG6yNKj-W2fSgPmbdBp6_NELu-w_2pcbdN3a3Xmdf70EuYj49hO2EDRtde2bWAMADr-RwhVrNxWY29obydA4FYrXf05kvlHATT2D5_IimNgwcPR8L1nSsUJCdxOVAa5/s1600/28115974.png" class="img-fluid img-responsive"></div>
-</div>
-</div>
+<div class="watermark"><img src="https://www.radiobani.com/v1/wp-content/plugins/radiobani-html-player-wp-plugin_v1.0.0//images/logo.png" class="img-fluid img-responsive"></div>
+</p></div>
+</p></div>
 <div class="col-12 ml-md-auto col-md-6">
 <div class="row">
 <div class="col-12">
 <div class="info-current-song">
 <h2 id="currentSong" class="current-song text-uppercase">Song</h2>
 <h3 id="currentArtist" class="current-artist text-captalize">Artist</h3>
-</div>
-</div>
+</p></div>
+</p></div>
 <div class="col-12">
 <div class="row">
 <div class="play-pause col-12 text-center">
-<button class="btn-play" onclick="togglePlay()"><i id="playerButton" class="fa fa-play"></i> <span id="buttonPlay">PLAY</span></button></div>
-</div>
+<button class="btn-play" onclick="togglePlay()"><i id="playerButton" class="fa fa-play"></i> <span id="buttonPlay">PLAY</span></button></p></div>
+</p></div>
 <div class="row">
 <div class="col-12 text-center">
 <div class="row volume-control">
 <div class="volume-icon col-1" onclick="mute()"><i id="playerMute" class="fa fa-volume-up"></i></div>
 <div class="volume-slide col-10 text-center"><input type="range" id="volume" step="1" min="0" max="100" value="50"></div>
 <div class="percentual-volume col-12">Volume <span id="volIndicator">&#8230;</span>%</div>
-</div>
-</div>
-</div>
+</p></div>
+</p></div>
+</p></div>
 <p> 
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</p></div>
+</p></div>
+</p></div>
+</p></div>
+</p></div>
 <div class="row historic">
 <div class="col-12">
-<h2> <a href="javascript:void(0);" id="triggerToggle" class="text-white"><i class="fa fa-bars"></i> mari diputer</a></h2>
+<h2> <a href="javascript:void(0);" id="triggerToggle" class="text-white"><i class="fa fa-bars"></i> TOCADO RECIENTEMENTE</a></h2>
 <p> </p>
 <div class="row" id="historicSong" style="display:flex">
 <article class="col-12 col-md-6">
@@ -71,49 +74,69 @@
 <div class="music-info">
 <div class="song">No canción</div>
 <div class="artist">No Artista</div>
-</div>
+</p></div>
 </article>
 <article class="col-12 col-md-6">
 <div class="cover-historic"></div>
 <div class="music-info">
 <div class="song">No Canción</div>
 <div class="artist">No Artista</div>
-</div>
+</p></div>
 </article>
 <article class="col-12 col-md-6">
 <div class="cover-historic"></div>
 <div class="music-info">
 <div class="song">No Canción</div>
 <div class="artist">No Artista</div>
-</div>
+</p></div>
 </article>
 <article class="col-12 col-md-6">
 <div class="cover-historic"></div>
 <div class="music-info">
 <div class="song">No Canción</div>
 <div class="artist">No Artista</div>
-</div>
+</p></div>
 </article></div>
-</div>
-</div>
-</div>
-</div>
-<div class="modal fade" id="modalLyrics" tabindex="-1" role="dialog" aria-labelledby="lyricsSong" aria-hidden="true">
+</p></div>
+</p></div>
+</p></div>
+</p></div>
+<div class="modal fade" id="modalLyrics" tabindex="-1" role="dialog" aria-labelledby="lyricsSong" aria-hidden="true"></p>
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
-              <h5 class="modal-title" id="lyricsSong">Lyrics</h5>
-                 <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Fechar"><br/>
-                     <span aria-hidden="true">&times;</span><br/>
-                 </button>
-               </div>
-               <div class="modal-body" id="lyric"></div>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-               </div>
-            </div>
-        </div>
-    </div>
+<h5 class="modal-title" id="lyricsSong">Lyrics</h5>
+<p> <button type="button" style="color: #fff" class="close" data-dismiss="modal" aria-label="Fechar"><br/>
+<span aria-hidden="true">&times;</span><br/>
+</button>
+</div>
+<div class="modal-body" id="lyric"></div>
+<div class="modal-footer">
+<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+</div>
+</p></div>
+</p></div>
+</p></div>
+</div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
+<h2 class="wp-block-heading has-text-align-center" style="margin-top:var(--wp--preset--spacing--x-small);margin-right:var(--wp--preset--spacing--x-small);margin-bottom:var(--wp--preset--spacing--x-small);margin-left:var(--wp--preset--spacing--x-small);font-size:23px;line-height:1.5"><strong>DESCARGA EL APP</strong></h2>
+<p class="has-text-align-center" style="line-height:1.8">Descarga el app en tu smartphone o tablet</p>
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-layout-2 wp-block-columns-is-layout-flex" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+<figure class="wp-block-image aligncenter size-large"><a href="https://apps.apple.com/nz/app/radio-bani/id1561046452"><img src="https://www.radiobani.com/v1/wp-content/uploads/2023/07/download-app-apple-icon.png" alt /></a></figure>
+</div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+<figure class="wp-block-image aligncenter size-large"><a href="https://play.google.com/store/apps/details?id=com.pivotradio.rbani&amp;hl=en_US&amp;gl=US&amp;pli=1"><img src="https://www.radiobani.com/v1/wp-content/uploads/2023/07/download-app-google-icon.png" alt /></a></figure>
+</div>
+</div>
+<div style="height:200px" aria-hidden="true" class="wp-block-spacer"></div>
+<div class="wp-block-group has-global-padding is-content-justification-right is-layout-constrained wp-container-core-group-layout-5 wp-block-group-is-layout-constrained">
+<figure class="wp-block-image size-full"><img width="578" height="112" src="https://www.radiobani.com/v1/wp-content/uploads/2023/07/radiobani-promo-2.png" alt class="wp-image-476" srcset="https://www.radiobani.com/v1/wp-content/uploads/2023/07/radiobani-promo-2.png 578w, https://www.radiobani.com/v1/wp-content/uploads/2023/07/radiobani-promo-2-300x58.png 300w" sizes="(max-width: 578px) 100vw, 578px" /></figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
