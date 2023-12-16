@@ -48,12 +48,11 @@
                                             <div class="play-pause col-12 text-center">
                                                 <button class="btn-play" onclick="togglePlay()"><i id="playerButton" class="fa fa-play"></i> <span id="buttonPlay">PLAY</span></button></div>
 </div>
-                                            <div class="col-12 col-md-10 text-center">
+                                            <div class="col-12 text-center">
                                                 <div class="row volume-control">
-                                                    <div class="volume-icon col-1"><i class="fa fa-volume-up"></i></div>
-                                                    <div class="volume-slide col-10 text-center"><input type="range" id="volume"
-                                                            step="1" min="0" max="100" value="80"></div>
-                                                    <div class="percentual-volume col-12">Volume <span id="volIndicator">...</span>%</div>
+                                                    <div class="volume-icon col-1" onclick="mute()"><i id="playerMute" class="fa fa-volume-up"></i></div>
+                                                    <div class="volume-slide col-10 text-center"><input type="range" id="volume" step="1" min="0" max="100" value="50"></div>
+                                                    <div class="percentual-volume col-12">Volume <span id="volIndicator">&#8230;</span>%</div>
                                                 </div>
                                             </div>
                                             <div class="col-12 text-center call-lyrics">
