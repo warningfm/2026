@@ -79,47 +79,45 @@
 	</div>
 
 	<script src="https://d1wu9t.mbahnunungonline.net/js/jquery.min.js?v=1.20.08.31d"></script>
-	<script type="text/javascript" src="js/lunaradio.min.js?v=1.20.09.09bc"></script>
+	<script type="text/javascript" src="js/lunaradio-animado.js?v=1.20.09.09bc"></script>
 	<script type="text/javascript">
-		$("#mbahnunungonline").lunaradio({
-			token: "",
-			userinterface: "big", 
-			backgroundcolor: "rgba(14,16,21,1)",
-			fontcolor: "#ffffff",
-			hightlightcolor: "#5f87c5", 
-			fontname: "ZCOOL XiaoWei", 
-			googlefont: "ZCOOL+XiaoWei", 
-			fontratio: "0.4", 
-			radioname: "Tombo Waras FM", 
-			scroll: "true", 
-			coverimage: "https://i.imgur.com/w0rUYAY.png",
-			coverstyle: "square",
-			usevisualizer: "real", 
-			visualizertype: "8",
-            visualizeropacity: "1.0",
-            multicolorvisualizer: "true", 
-			itunestoken: "1000lIPN", 
-			metadatatechnic: "directly", 
-			ownmetadataurl: "", 
-			corsproxy: "https://zet.pluginsandthemes.ro/",
-			usestreamcorsproxy: "false",
-			streamurl: "https://stream.zeno.fm/uv0krbzgszpvv", 
-			streamtype: "radiozeno", 
-			icecastmountpoint: "/rbtfm", 
-			radionomyid: "", 
-			radionomyapikey: "",
-			radiojarid: "",  
-			radiocoid: "",
-			radiozenoid: "n4gzbe9ufzzuv",
-			shoutcastpath: "/rbtfm?type=http&amp;nocache=377274",
-			shoutcastid: "1", 
-			streamsuffix: "", 
-			metadatainterval: "5000", 
-			volume: "99",
+		 $("#mbahnunungonline").lunaradio({
+            userinterface: "big",
+            backgroundcolor: "rgba(9,15,25,0.5)",
+            fontcolor: "#ffffff",
+            hightlightcolor: "#b60c0f",
+            fontname: "ZCOOL XiaoWei",
+            googlefont: "ZCOOL+XiaoWei",
+            fontratio: "0.4",
+            radioname: "TOMBOWARAS FM",
+            scroll: "true",
+            coverimage: "https://i.imgur.com/w0rUYAY.png",
+            onlycoverimage: "false",
+            coverstyle: "animated",
+            usevisualizer: "real",
+            visualizertype: "8",
+            itunestoken: "1000lIPN",
+            metadatatechnic: "fallback", //fallback (usar para zeno)
+            corsproxy: "",
+            usestreamcorsproxy: "false",
+            streamurl: "https://stream.zeno.fm/uv0krbzgszpvv",
+            streamtype: "zeno", //soporta: zeno, icecast2, shoutcast2
+            idzeno: "uv0krbzgszpvv",
+            icecastmountpoint: "",
+            shoutcastpath: "",
+            shoutcastid: "1",
+            metadatainterval: "26000",
+            volume: "100",
+            debug: "false",
             autoplay: "true",
-			debug: "false"
-		});		
-	</script>
+            displayliveicon: "true",
+            visualizeropacity: "1.0",
+            multicolorvisualizer: "true",
+            color1: "#00FF00",
+            color2: "#ffff00",
+            color3: "#FF1F6F",
+            color4: "#FF1F6F",
+        });
 <div style="position: absolute; top:100%; width: 100%;">
 
 
