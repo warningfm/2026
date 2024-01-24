@@ -475,7 +475,7 @@ y("", "")
 
 function zeno() {
 zurl = "https://zenoplay.zenomedia.com/api/zenofm/nowplaying/"+idzeno+"/?rand="+ Math.random();
-if (sa === "fallback") {url = "fallback.php?url="+zurl} else {url = zurl}
+if (sa === "fallback") {url = "https://news.radiobintangtenggara.com/zenoluna/fallback.php?url="+zurl} else {url = zurl}
 
 d.ajax({
 dataType: "text",
