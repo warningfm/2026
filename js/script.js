@@ -11,8 +11,8 @@ const MEDIACP_JSON_URL = ''
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
 const URL_STREAMING = 'https://stream.zeno.fm/uv0krbzgszpvv';
 
-//ZENO ID
-var zenoid = 'uv0krbzgszpvv'
+//NOW PLAYING API.
+const API_URL = 'https://api-v2.streamafrica.net/metadata?url=' + URL_STREAMING
 
 // Visit https://api.vagalume.com.br/docs/ to get your API key
 const API_KEY = "18fe07917957c289983464588aabddfb";
@@ -370,10 +370,10 @@ function getStreamingData() {
         } 
     };
 
-    var d = new Date();
+   var d = new Date();
 
     // Requisition with timestamp to prevent cache on mobile devices
-    xhttp.open('GET', 'https://api.streamafrica.net/zeno/index.php?z='+zenoid);
+    xhttp.open('GET', API_URL);
     xhttp.send();
 }
 
