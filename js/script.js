@@ -1,14 +1,11 @@
 
 
-const RADIO_NAME = 'TOMBOWARAS FM BANYUWANGI';
+const RADIO_NAME = 'TOMBOWARAS FM Live';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
 var API_SERVICE = 'spotify';
 
-//PASTE YOUR MEDIA CP JSON URL HERE TO GET NOW PLAYING SONG TITLE.
-const MEDIACP_JSON_URL = ''
-
-// Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
+// Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR ETC.... DOES NOT SUPPORT HLS
 const URL_STREAMING = 'https://stream.zeno.fm/uv0krbzgszpvv';
 
 //NOW PLAYING API.
@@ -78,10 +75,10 @@ function Page() {
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 var data = JSON.parse(this.responseText);
-                var artworking = data.results;
-                var gotit = artworking.artwork;
+                var artwork = data.results.artwork;
+                 var artworkXL = artwork.large;
 
-                document.querySelectorAll('#historicSong article .cover-historic')[n].style.backgroundImage = 'url(' + gotit + ')';
+                document.querySelectorAll('#historicSong article .cover-historic')[n].style.backgroundImage = 'url(' + artworkXL + ')';
             }
             // Formating characters to UTF-8
             var music = info.song.replace(/&apos;/g, '\'');
@@ -97,7 +94,7 @@ function Page() {
             $historicDiv[n].classList.add('animated');
             $historicDiv[n].classList.add('slideInRight');
         }
-        xhttp.open('GET', 'https://api.streamafrica.net/new.search.php?query=' + info.artist + ' ' + info.song + '&service=' + API_SERVICE.toLowerCase());
+        xhttp.open('GET', 'https://api-v2.streamafrica.net/musicsearch?query=' + info.artist + ' ' + info.song + '&service=' + API_SERVICE.toLowerCase());
         xhttp.send();
 
         setTimeout(function () {
@@ -121,7 +118,7 @@ function Page() {
             if (this.readyState === 4 && this.status === 200) {
                 var data = JSON.parse(this.responseText);
                 var artworkUrl100 = data.results;
-                var urlCoverArt = artworkUrl100.artwork;
+                var urlCoverArt = artworkUrl100.artwork.medium;
 
                 coverArt.style.backgroundImage = 'url(' + urlCoverArt + ')';
                 coverArt.className = 'animated bounceInLeft';
@@ -171,7 +168,7 @@ function Page() {
                 }
             }
         }
-        xhttp.open('GET', 'https://api.streamafrica.net/new.search.php?query=' + artist + ' ' + song + '&service=' + API_SERVICE.toLowerCase());
+        xhttp.open('GET', 'https://api-v2.streamafrica.net/musicsearch?query=' + artist + ' ' + song + '&service=' + API_SERVICE.toLowerCase());
         xhttp.send();
     }
 
@@ -337,40 +334,36 @@ function mute() {
 function getStreamingData() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-
         if (this.readyState === 4 && this.status === 200) {
-
-            if(this.response.length === 0) {
-                console.log('%cdebug', 'font-size: 22px')
+            if (this.response.length === 0) {
+                console.log('%cdebug', 'font-size: 22px');
             }
 
             var data = JSON.parse(this.responseText);
+            console.log('Received data:', data); // Add this line for debugging
 
             var page = new Page();
 
             // Formating characters to UTF-8
-            let song = data.currentSong.replace(/&apos;/g, '\'');
-            currentSong = song.replace(/&amp;/g, '&');
-
-            let artist = data.currentArtist.replace(/&apos;/g, '\'');
-            currentArtist = artist.replace(/&amp;/g, '&');
+            let song = data.song ? data.song.replace(/&apos;/g, '\'') : '';
+            let artist = data.artist ? data.artist.replace(/&apos;/g, '\'') : '';
 
             // Change the title
-            document.title = currentSong + ' - ' + currentArtist + ' | ' + RADIO_NAME;
+            document.title = song + ' - ' + artist + ' | ' + RADIO_NAME;
 
             if (document.getElementById('currentSong').innerHTML !== song) {
-                page.refreshCover(currentSong, currentArtist);
-                page.refreshCurrentSong(currentSong, currentArtist);
-                page.refreshLyric(currentSong, currentArtist);
+                page.refreshCover(song, artist);
+                page.refreshCurrentSong(song, artist);
+                page.refreshLyric(song, artist);
 
                 for (var i = 0; i < 2; i++) {
-                    page.refreshHistoric(data.songHistory[i], i);
+                    page.refreshHistoric(data.history[i], i);
                 }
             }
-        } 
+        }
     };
 
-   var d = new Date();
+    var d = new Date();
 
     // Requisition with timestamp to prevent cache on mobile devices
     xhttp.open('GET', API_URL);
@@ -541,4 +534,3 @@ function intToDecimal(vol) {
 function decimalToInt(vol) {
     return vol * 100;
 }
-
