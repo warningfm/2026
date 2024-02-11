@@ -371,37 +371,33 @@ function mute() {
 function getStreamingData() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-
         if (this.readyState === 4 && this.status === 200) {
-
-            if(this.response.length === 0) {
-                console.log('%cdebug', 'font-size: 22px')
+            if (this.response.length === 0) {
+                console.log('%cdebug', 'font-size: 22px');
             }
 
             var data = JSON.parse(this.responseText);
+            console.log('Received data:', data); // Add this line for debugging
 
             var page = new Page();
 
             // Formating characters to UTF-8
-            let song = data.currentSong.replace(/&apos;/g, '\'');
-            currentSong = song.replace(/&amp;/g, '&');
-
-            let artist = data.currentArtist.replace(/&apos;/g, '\'');
-            currentArtist = artist.replace(/&amp;/g, '&');
+            let song = data.song ? data.song.replace(/&apos;/g, '\'') : '';
+            let artist = data.artist ? data.artist.replace(/&apos;/g, '\'') : '';
 
             // Change the title
-            document.title = currentSong + ' - ' + currentArtist + ' | ' + RADIO_NAME;
+            document.title = song + ' - ' + artist + ' | ' + RADIO_NAME;
 
             if (document.getElementById('currentSong').innerHTML !== song) {
-                page.refreshCover(currentSong, currentArtist);
-                page.refreshCurrentSong(currentSong, currentArtist);
-                // page.refreshLyric(currentSong, currentArtist);
+                page.refreshCover(song, artist);
+                page.refreshCurrentSong(song, artist);
+                page.refreshLyric(song, artist);
 
-                for (var i = 0; i < 4; i++) {
-                    page.refreshHistoric(data.songHistory[i], i);
+                for (var i = 0; i < 2; i++) {
+                    page.refreshHistoric(data.history[i], i);
                 }
             }
-        } 
+        }
     };
 
     var d = new Date();
