@@ -1,3 +1,5 @@
+
+
 const RADIO_NAME = 'Radio mbah nunung Online';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY or AZURACAST. eg : spotify 
@@ -69,17 +71,17 @@ function Page() {
         var $artistName = document.querySelectorAll('#historicSong article .music-info .artist');
 
         // Default cover art
-        var urlCoverArt = 'images/cover.png';
+        var urlCoverArt = 'img/cover.png';
 
         // Get cover art for song history
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 var data = JSON.parse(this.responseText);
-                var artworking = data.results;
-                var gotit = artworking.artwork;
+                var artwork = data.results.artwork;
+                 var artworkXL = artwork.large;
 
-                document.querySelectorAll('#historicSong article .cover-historic')[n].style.backgroundImage = 'url(' + gotit + ')';
+                document.querySelectorAll('#historicSong article .cover-historic')[n].style.backgroundImage = 'url(' + artworkXL + ')';
             }
             // Formating characters to UTF-8
             var music = info.song.replace(/&apos;/g, '\'');
@@ -95,7 +97,7 @@ function Page() {
             $historicDiv[n].classList.add('animated');
             $historicDiv[n].classList.add('slideInRight');
         }
-        xhttp.open('GET', 'https://api.streamafrica.net/new.search.php?query=' + info.artist + ' ' + info.song + '&service=' + API_SERVICE.toLowerCase());
+        xhttp.open('GET', 'https://api-v2.streamafrica.net/musicsearch?query=' + info.artist + ' ' + info.song + '&service=' + API_SERVICE.toLowerCase());
         xhttp.send();
 
         setTimeout(function () {
@@ -108,7 +110,7 @@ function Page() {
 
     this.refreshCover = function (song = '', artist) {
         // Default cover art
-        var urlCoverArt = 'images/cover.png';
+        var urlCoverArt = 'img/cover.png';
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -119,12 +121,7 @@ function Page() {
             if (this.readyState === 4 && this.status === 200) {
                 var data = JSON.parse(this.responseText);
                 var artworkUrl100 = data.results;
-                var urlCoverArt = artworkUrl100.artwork;
-                var urlCoverArt2 = artworkUrl100.artwork_cdn;
-                
-                if (urlCoverArt == null){
-                    return urlCoverArt2;
-                }
+                var urlCoverArt = artworkUrl100.artwork.medium;
 
                 coverArt.style.backgroundImage = 'url(' + urlCoverArt + ')';
                 coverArt.className = 'animated bounceInLeft';
@@ -174,7 +171,7 @@ function Page() {
                 }
             }
         }
-        xhttp.open('GET', 'https://api.streamafrica.net/new.search.php?query=' + artist + ' ' + song + '&service=' + API_SERVICE.toLowerCase());
+        xhttp.open('GET', 'https://api-v2.streamafrica.net/musicsearch?query=' + artist + ' ' + song + '&service=' + API_SERVICE.toLowerCase());
         xhttp.send();
     }
 
