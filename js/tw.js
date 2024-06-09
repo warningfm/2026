@@ -10,7 +10,7 @@ const url = 'https://api.zeno.fm/mounts/metadata/subscribe/uv0krbzgszpvv';
 const API_KEY = "18fe07917957c289983464588aabddfb";
 
 // Variable to control history display: true = display / false = hides
-let showHistory = false; 
+let showHistory = true; 
 
 window.onload = function () {
     var page = new Page;
