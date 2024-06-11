@@ -1,10 +1,10 @@
 const RADIO_NAME = 'Bendición Stereo';
 
 // SELECT ARTWORK PROVIDER, ITUNES, DEEZER & SPOTIFY  eg : spotify 
-var API_SERVICE = 'DEEZER';
+var API_SERVICE = 'spotify';
 
 // Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
-const URL_STREAMING = 'https://sv2.globalhostlive.com/proxy/bendistereo/stream2';
+const URL_STREAMING = 'https://stream.zeno.fm/r4mpcrfwfzzuv';
 
 //API URL /
 const API_URL = 'https://twj.es/radio_info/?radio_url='+URL_STREAMING
