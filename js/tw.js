@@ -238,18 +238,18 @@ function mute() {
     }
 }
 
-// Função para lidar com a conexão de eventos
+// Function to handle event wiring
 function connectToEventSource(url) {
-    // Criar uma nova instância de EventSource com a URL fornecida
+    // Create a new EventSource instance with the provided URL
     const eventSource = new EventSource(url);
 
-    // Adicionar um ouvinte para o evento 'message'
+    // Add a listener for the 'message' event
     eventSource.addEventListener('message', function(event) {
         // Chamar a função para tratar os dados recebidos, passando a URL também
         processData(event.data, url);
     });
 
-    // Adicionar um ouvinte para o evento 'error'
+    // Add a listener for the 'error' event
     eventSource.addEventListener('error', function(event) {
         console.error('Erro na conexão de eventos:', event);
         // Tentar reconectar após um intervalo de tempo
@@ -259,12 +259,12 @@ function connectToEventSource(url) {
     });
 }
 
-// Função para tratar os dados recebidos
+// Function to process received data
 function processData(data) {
     // Parse JSON
     const parsedData = JSON.parse(data);
     
-    // Verificar se a mensagem é sobre a música
+    // Check if the message is about the song
     if (parsedData.streamTitle) {
         // Extrair o título da música e o artista
         let artist, song;
@@ -294,18 +294,18 @@ function processData(data) {
     }
 }
 
-// Iniciar a conexão com a API
+// Start connecting to the API
 connectToEventSource(url);
 
-// Define a função de manipulação da resposta da API do Deezer no escopo global
+// Defines the Deezer API response handling function in the global scope
 function handleDeezerResponse(data, song) {
     var coverArt = document.getElementById('currentCoverArt');
     var coverBackground = document.getElementById('bgCover');
 
     if (data.data && data.data.length > 0) {
-        // Buscar o Cover pelo nome do Artista
-        // var artworkUrl = data.data[0].artist.picture_big;
-        // Buscar o Cover pelo nome da música
+        // Search Cover by Artist name
+        // var artworkUrl = data.data[0].artist.picture_xl;
+        // Search Cover by song name
         var artworkUrl = data.data[0].album.cover_big;
 
         coverArt.style.backgroundImage = 'url(' + artworkUrl + ')';
