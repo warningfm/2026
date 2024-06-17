@@ -2,7 +2,7 @@
 
 const RADIO_NAME = 'Tombo Waras';
 
-// Change Stream URL Here, Supports, ICECAST, ZENO, SHOUTCAST, RADIOJAR and any other stream service.
+// Change Stream URL Here
 const URL_STREAMING = 'https://stream.zeno.fm/uv0krbzgszpvv';
 
 // Change API URL Here
@@ -65,12 +65,12 @@ class Page {
             }
         };
 
-        // Função para atualizar a capa
+        // Function to update the cover
         this.refreshCover = function (song = '', artist) {
             // Default cover art
             var urlCoverArt = 'img/cover.png';
 
-            // Criação da tag de script para fazer a requisição JSONP à API do Deezer
+            // Creation of the script tag to make the JSONP request to the Deezer API
             const script = document.createElement('script');
             script.src = `https://api.deezer.com/search?q=${artist} ${song}&output=jsonp&callback=handleDeezerResponse`;
             document.body.appendChild(script);
@@ -275,12 +275,12 @@ function processData(data) {
         if (streamTitle.includes('-')) {
             [artist, song] = streamTitle.split(' - ');
         } else {
-            // Se não houver "-" na string, consideramos que o título é apenas o nome da música
+            // If there is no "-" in the string, we consider the title to be just the name of the song
             artist = '';
             song = streamTitle;
         }
 
-        // Criar o objeto com os dados formatados
+        // Create the object with the formatted data
         const formattedData = {
             currentSong: song.trim(),
             currentArtist: artist.trim()
@@ -289,7 +289,7 @@ function processData(data) {
         // Converter o objeto em JSON
         const jsonData = JSON.stringify(formattedData);
 
-        // Chamar a função getStreamingData com os dados formatados e a URL
+        // Call the getStreamingData function with the formatted data and URL
         getStreamingData(jsonData);
     } else {
         console.log('Mensagem recebida:', parsedData);
@@ -315,8 +315,8 @@ function handleDeezerResponse(data, song) {
 
         coverBackground.style.backgroundImage = 'url(' + artworkUrl + ')';
     } else {
-        // Caso não haja dados ou a lista de dados esteja vazia,
-        // defina a capa padrão
+        // If there is no data or the data list is empty,
+        // set default cover
         var defaultArtworkUrl = 'img/cover.png';
 
         coverArt.style.backgroundImage = 'url(' + defaultArtworkUrl + ')';
@@ -387,13 +387,13 @@ function getStreamingData(data) {
 
     if (showHistory) {
 
-        // Verificar se a música é diferente da última atualizada
+        // Check if the song is different from the last updated one
         if (musicHistory.length === 0 || (musicHistory[0].song !== song)) {
             // Atualizar o histórico com a nova música
             updateMusicHistory(artist, song);
         }
 
-        // Atualizar a interface do histórico
+        // Update the history interface
         updateHistoryUI();
 
     }
@@ -408,20 +408,20 @@ function updateHistoryUI() {
     }
 }
 
-// Variável global para armazenar o histórico das duas últimas músicas
+// Global variable to store the history of the last two songs
 var musicHistory = [];
 
-// Função para atualizar o histórico das duas últimas músicas
+// Function to update the history of the last two songs
 function updateMusicHistory(artist, song) {
-    // Adicionar a nova música no início do histórico
+    // Add the new song to the beginning of the history
     musicHistory.unshift({ artist: artist, song: song });
 
-    // Manter apenas as duas últimas músicas no histórico
+    // Keep only the last two songs in history
     if (musicHistory.length > 4) {
         musicHistory.pop(); // Remove a música mais antiga do histórico
     }
 
-    // Chamar a função para exibir o histórico atualizado
+    // Call function to display updated history
     displayHistory();
 }
 
@@ -453,21 +453,21 @@ function displayHistory() {
     }, 2000);
 }
 
-// Função para atualizar a capa da música no histórico
+// Function to update song cover in history
 function refreshCoverForHistory(song, artist, index) {
-    // Criação da tag de script para fazer a requisição JSONP à API do Deezer
+    // Creation of the script tag to make the JSONP request to the Deezer API
     const script = document.createElement('script');
     script.src = `https://api.deezer.com/search?q=${encodeURIComponent(artist)} ${encodeURIComponent(song)}&output=jsonp&callback=handleDeezerResponseForHistory_${index}`;
     document.body.appendChild(script);
 
-    // Função de manipulação da resposta da API do Deezer para o histórico de músicas
+    // Deezer API response handling function for music history
     window['handleDeezerResponseForHistory_' + index] = function (data) {
         if (data.data && data.data.length > 0) {
-            // Atualizar a capa pelo nome do artista
+            // Update cover by artist name
             // var artworkUrl = data.data[0].artist.picture_big;
-            // Atualizar a capa pelo nome da música
-            var artworkUrl = data.data[0].album.cover_big;
-            // Atualizar a capa da música no histórico usando o índice correto
+            // Update cover by song name
+            var artworkUrl = data.data[0].album.cover_xl;
+            // Update song cover in history using correct index
             var $coverArt = document.querySelectorAll('#historicSong article .cover-historic')[index];
             $coverArt.style.backgroundImage = 'url(' + artworkUrl + ')';
         }
