@@ -22,7 +22,7 @@ const url = 'https://api.zeno.fm/mounts/metadata/subscribe/uv0krbzgszpvv';
 const API_KEY = "18fe07917957c289983464588aabddfb";
 
 //PASTE DEFAULT COVER
-const DEFAULT_COVER_ART = 'https://mbahnunungonline.net/img/m60X6pG.png';
+const DEFAULT_COVER_ART = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIUmU3WDb_IzhuaFgQeTvWR35SQGpCrCIN4ifCrJ9-mYB83BtcnBMjUikMZNKx1kOiYxP6O_c3iDdt6UNSC-pgqY6TJ0lupqxTYVZraREwa-FGkUJAEEBg7ZkG4ixvSIWmn0nnQhmr0_2yN8Y3fACkxqbb1ILSveD21F6R3nWRrIrsUECI5lFulqrb-O3U/s1600/m60X6pG.png';
 
 // Variable to control history display: true = display / false = hides
 let showHistory = true; 
