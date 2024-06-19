@@ -21,6 +21,9 @@ const url = 'https://api.zeno.fm/mounts/metadata/subscribe/uv0krbzgszpvv';
 // Visit https://api.vagalume.com.br/docs/ to get your API key
 const API_KEY = "18fe07917957c289983464588aabddfb";
 
+//PASTE DEFAULT COVER
+const DEFAULT_COVER_ART = 'https://mbahnunungonline.net/img/m60X6pG.png';
+
 // Variable to control history display: true = display / false = hides
 let showHistory = true; 
 
